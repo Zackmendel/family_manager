@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CloseIcon } from './icons';
 
 interface AddMemberModalProps {
@@ -13,6 +13,24 @@ const AddMemberModal: React.FC<AddMemberModalProps> = ({ isOpen, onClose, onAddM
   const [role, setRole] = useState<'Mom' | 'Kid'>('Kid');
   const [limit, setLimit] = useState(20);
   const [allowance, setAllowance] = useState(10);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, onClose]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,8 +46,8 @@ const AddMemberModal: React.FC<AddMemberModalProps> = ({ isOpen, onClose, onAddM
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md transform transition-all"  onClick={e => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+      <div className="bg-white rounded-xl shadow-2xl p-6 sm:p-8 w-full max-w-md transform transition-all"  onClick={e => e.stopPropagation()}>
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-dark-text">Add New Family Member</h2>
           <button onClick={onClose} className="text-light-text hover:text-dark-text">
@@ -86,9 +104,9 @@ const AddMemberModal: React.FC<AddMemberModalProps> = ({ isOpen, onClose, onAddM
               />
             </div>
           )}
-          <div className="flex justify-end pt-4">
-            <button type="button" onClick={onClose} className="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg mr-2 hover:bg-gray-300">Cancel</button>
-            <button type="submit" className="bg-base-blue text-white font-semibold px-4 py-2 rounded-lg hover:bg-base-blue-dark">Add Member</button>
+          <div className="flex gap-2 justify-end pt-4">
+            <button type="button" onClick={onClose} className="flex-1 sm:flex-none bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-300">Cancel</button>
+            <button type="submit" className="flex-1 sm:flex-none bg-base-blue text-white font-semibold px-4 py-2 rounded-lg hover:bg-base-blue-dark">Add Member</button>
           </div>
         </form>
       </div>
