@@ -7,8 +7,10 @@ import Dashboard from './components/Dashboard';
 import AddMemberModal from './components/AddMemberModal';
 import SettingsModal from './components/SettingsModal';
 import TransactionHistory from './components/TransactionHistory';
+import TestActions from './pages/dev/TestActions';
 
 const App: React.FC = () => {
+  const [currentView, setCurrentView] = useState<'main' | 'dev'>('main');
   const [familyData, setFamilyData] = useState<FamilyData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,6 +20,27 @@ const App: React.FC = () => {
   const [isHistoryVisible, setHistoryVisible] = useState(false);
   
   const [selectedMember, setSelectedMember] = useState<FamilyMember | null>(null);
+
+  useEffect(() => {
+    const checkDevMode = () => {
+      const hash = window.location.hash;
+      const params = new URLSearchParams(window.location.search);
+      
+      if (hash === '#dev' || params.get('dev') === 'true') {
+        setCurrentView('dev');
+      } else {
+        setCurrentView('main');
+      }
+    };
+
+    checkDevMode();
+
+    window.addEventListener('hashchange', checkDevMode);
+    
+    return () => {
+      window.removeEventListener('hashchange', checkDevMode);
+    };
+  }, []);
 
   const fetchData = useCallback(async () => {
     try {
@@ -90,6 +113,10 @@ const App: React.FC = () => {
     setSettingsModalOpen(false);
     setSelectedMember(null);
   };
+
+  if (currentView === 'dev') {
+    return <TestActions />;
+  }
 
   if (isLoading) {
     return (
