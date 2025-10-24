@@ -127,7 +127,9 @@ export default function Home() {
             Connect your wallet to access your family smart wallet
           </p>
           <div className="flex justify-center">
-            <Wallet />
+            <Wallet>
+              <></>
+            </Wallet>
           </div>
           <p className="text-sm text-gray-500 mt-6">
             Powered by Base Sepolia
@@ -172,7 +174,9 @@ export default function Home() {
             Switch to Base Sepolia
           </button>
           <div className="mt-6 flex justify-end">
-            <Wallet />
+            <Wallet>
+              <></>
+            </Wallet>
           </div>
         </div>
         <Notifications notifications={notifications} />
@@ -232,7 +236,9 @@ export default function Home() {
                   {address.slice(0, 6)}...{address.slice(-4)}
                 </p>
               </div>
-              <Wallet />
+              <Wallet>
+                <></>
+              </Wallet>
             </div>
           </div>
         </div>

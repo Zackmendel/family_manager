@@ -14,17 +14,8 @@ export function RootProvider({ children }: { children: ReactNode }) {
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
         <OnchainKitProvider
-          apiKey={process.env.NEXT_PUBLIC_CDP_API_KEY}
-          chain={baseSepolia}
-          config={{
-            appearance: {
-              mode: "auto",
-              theme: "default",
-            },
-            wallet: {
-              display: "modal",
-            },
-          }}
+        apiKey={process.env.NEXT_PUBLIC_CDP_API_KEY}
+        chain={baseSepolia}
         >
           {children}
         </OnchainKitProvider>
