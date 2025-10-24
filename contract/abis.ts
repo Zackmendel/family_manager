@@ -306,6 +306,128 @@ export const familyManagerAbi = [
     "stateMutability": "nonpayable"
   },
   {
+    "type": "function",
+    "name": "childSpend",
+    "inputs": [
+      {
+        "name": "_recipient",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_amount",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_categoryId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "updateChildLimits",
+    "inputs": [
+      {
+        "name": "_child",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_daily",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_weekly",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "_monthly",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "pauseChild",
+    "inputs": [
+      {
+        "name": "_child",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_paused",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getChildSpent",
+    "inputs": [
+      {
+        "name": "_child",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "dailySpent",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "weeklySpent",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "monthlySpent",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isCategoryBlocked",
+    "inputs": [
+      {
+        "name": "_child",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_categoryId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
     "type": "event",
     "name": "AdminWithdraw",
     "inputs": [
