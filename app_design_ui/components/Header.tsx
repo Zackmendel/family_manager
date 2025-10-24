@@ -13,9 +13,9 @@ const Header: React.FC = () => {
           </h1>
         </div>
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 bg-base-blue text-white font-semibold px-4 py-2 rounded-lg hover:bg-base-blue-dark transition-colors duration-300">
+          <button className="flex items-center gap-2 bg-base-blue text-white font-semibold px-3 py-2 md:px-4 rounded-lg hover:bg-base-blue-dark transition-colors duration-300">
             <WalletIcon className="h-5 w-5" />
-            <span>0x123...AbCd</span>
+            <span className="hidden sm:inline">0x123...AbCd</span>
           </button>
         </div>
       </div>

@@ -20,6 +20,24 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, member, 
     setAllowance(member.dailyAllowance || 0);
   }, [member]);
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, onClose]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onUpdate(member.id, limit, allowance);
@@ -28,8 +46,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, member, 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md transform transition-all" onClick={e => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
+      <div className="bg-white rounded-xl shadow-2xl p-6 sm:p-8 w-full max-w-md transform transition-all" onClick={e => e.stopPropagation()}>
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-dark-text">Settings for {member.name}</h2>
           <button onClick={onClose} className="text-light-text hover:text-dark-text">
@@ -63,11 +81,11 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, member, 
               />
             </div>
           )}
-          <div className="flex justify-between items-center pt-4">
-            <button type="button" onClick={() => onRevoke(member.id)} className="text-red-600 font-semibold px-4 py-2 rounded-lg hover:bg-red-50">Revoke Access</button>
-            <div className="flex">
-              <button type="button" onClick={onClose} className="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg mr-2 hover:bg-gray-300">Cancel</button>
-              <button type="submit" className="bg-base-blue text-white font-semibold px-4 py-2 rounded-lg hover:bg-base-blue-dark">Save Changes</button>
+          <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-2 pt-4">
+            <button type="button" onClick={() => onRevoke(member.id)} className="text-red-600 font-semibold px-4 py-2 rounded-lg hover:bg-red-50 order-last sm:order-first">Revoke Access</button>
+            <div className="flex gap-2">
+              <button type="button" onClick={onClose} className="flex-1 sm:flex-none bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-300">Cancel</button>
+              <button type="submit" className="flex-1 sm:flex-none bg-base-blue text-white font-semibold px-4 py-2 rounded-lg hover:bg-base-blue-dark">Save Changes</button>
             </div>
           </div>
         </form>

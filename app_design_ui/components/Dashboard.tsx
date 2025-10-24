@@ -25,17 +25,19 @@ const Dashboard: React.FC<DashboardProps> = ({ familyData, onAddMember, onOpenSe
           <p className="text-light-text text-sm">Managed by {father?.name}</p>
         </div>
         <div className="flex flex-wrap gap-2">
-           <button onClick={onTopUpAllowance} className="flex items-center gap-2 bg-green-100 text-green-700 font-semibold px-4 py-2 rounded-lg hover:bg-green-200 transition-colors duration-300">
-            <ClockIcon className="h-5 w-5"/>
-            <span>Daily Allowance</span>
+           <button onClick={onTopUpAllowance} className="flex items-center gap-1 sm:gap-2 bg-green-100 text-green-700 font-semibold px-3 sm:px-4 py-2 rounded-lg hover:bg-green-200 transition-colors duration-300 text-sm sm:text-base">
+            <ClockIcon className="h-5 w-5 flex-shrink-0"/>
+            <span className="hidden xs:inline sm:inline">Daily Allowance</span>
+            <span className="inline xs:hidden sm:hidden">Allowance</span>
           </button>
-          <button onClick={onToggleHistory} className="flex items-center gap-2 bg-gray-100 text-gray-700 font-semibold px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors duration-300">
-            <HistoryIcon className="h-5 w-5"/>
+          <button onClick={onToggleHistory} className="flex items-center gap-1 sm:gap-2 bg-gray-100 text-gray-700 font-semibold px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors duration-300 text-sm sm:text-base">
+            <HistoryIcon className="h-5 w-5 flex-shrink-0"/>
             <span>History</span>
           </button>
-          <button onClick={onAddMember} className="flex items-center gap-2 bg-base-blue text-white font-semibold px-4 py-2 rounded-lg hover:bg-base-blue-dark transition-colors duration-300">
-            <AddUserIcon className="h-5 w-5"/>
-            <span>Add Member</span>
+          <button onClick={onAddMember} className="flex items-center gap-1 sm:gap-2 bg-base-blue text-white font-semibold px-3 sm:px-4 py-2 rounded-lg hover:bg-base-blue-dark transition-colors duration-300 text-sm sm:text-base">
+            <AddUserIcon className="h-5 w-5 flex-shrink-0"/>
+            <span className="hidden xs:inline sm:inline">Add Member</span>
+            <span className="inline xs:hidden sm:hidden">Add</span>
           </button>
         </div>
       </div>
