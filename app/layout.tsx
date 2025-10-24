@@ -24,15 +24,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <OnchainKitProvider
               apiKey={process.env.NEXT_PUBLIC_CDP_API_KEY}
               chain={baseSepolia}
-              config={{
-                appearance: {
-                  mode: "auto",
-                  theme: "default",
-                },
-                wallet: {
-                  display: "modal",
-                },
-              }}
             >
               {children}
             </OnchainKitProvider>

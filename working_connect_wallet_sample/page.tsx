@@ -16,7 +16,9 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <header className={styles.headerWrapper}>
-        <Wallet />
+        <Wallet>
+          <></>
+        </Wallet>
       </header>
 
       <div className={styles.content}>

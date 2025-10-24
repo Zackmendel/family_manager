@@ -99,7 +99,7 @@ export default function TxList({ address, pollingInterval = DEFAULT_POLLING_INTE
 
   useEffect(() => {
     fetchEvents();
-  }, []);
+  }, [fetchEvents]);
 
   useEffect(() => {
     const interval = setInterval(() => {
